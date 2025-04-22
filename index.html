@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tulips for Eka 🌷</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #bfefff; /* cotton-candy blue */
+      font-family: 'Segoe UI', sans-serif;
+      position: relative;
+    }
+
+    .tulip {
+      position: absolute;
+      width: 20px;
+      height: 50px;
+      animation: floatUp linear infinite;
+      z-index: 2;
+    }
+
+    .petal {
+      position: absolute;
+      bottom: 20px;
+      width: 20px;
+      height: 30px;
+      background: radial-gradient(circle at center, #ff69b4, #ff1493);
+      border-radius: 50% 50% 0 0;
+      z-index: 2;
+    }
+
+    .petal.left {
+      transform: rotate(-25deg);
+      left: -10px;
+    }
+
+    .petal.right {
+      transform: rotate(25deg);
+      right: -10px;
+    }
+
+    .stem {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 30px;
+      background-color: #228B22;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* Styling the play button */
+    .play-button {
+      background-color: #ff1493;
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 10;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .play-button:hover {
+      background-color: #ff69b4;
+    }
+
+    /* Styling the email message */
+    .email-message {
+      display: none;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333;
+      text-align: center;
+      position: absolute;
+      top: 20%;  /* Adjusted to give more space at the top */
+      left: 50%;
+      transform: translateX(-50%);
+      overflow-y: auto; /* Allow scroll if content overflows */
+      max-height: 70%; /* Limit height to make sure it doesn't cover everything */
+    }
+
+    .email-message h2 {
+      color: #ff1493;
+      font-size: 24px;  /* Larger title for better visibility */
+    }
+
+    .email-message p {
+      font-size: 18px;  /* Bigger text for better readability */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Play button -->
+  <button class="play-button" id="playButton">Play Music</button>
+
+  <!-- Local MP3 Music -->
+  <audio id="bgMusic" loop>
+    <source src="glyndel.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Updated Email Message -->
+  <div class="email-message" id="emailMessage">
+    <h2> kangkang 💐</h2>
+    <p>babi,</p>
+    <p>Gusto kong iparating na tuwing naiisip kita, may kilig na hindi ko kayang itago. Sobrang saya ko kapag nandiyan ka, at hindi ko maitatanggi na napakaimportante mo sa buhay ko.</p>
+    <p>Alam ko na baka hindi ko pa nasasabi ng buo, pero gusto kong malaman mo na mahal na mahal kita. Wala akong pera pambili ng tulips mo kaya heto muna hehe. Ang mga tulips na ito, sana kahit papaano ay magbigay saya at ngiti sa'yo, kasi ikaw lang yung tao na kayang magpasaya sa akin.</p>
+    <p>Wala akong ibang gusto kundi ang makita kang masaya, at sana kahit sa maliliit na bagay, maramdaman mo kung gaano kita pinapahalagahan.</p>
+    <p>Salamat sa pagiging ikaw, babi. Hindi ko kayang ipaliwanag pa ng buo, pero sana nararamdaman mo kung gaano kita kamahal.</p>
+    <p><b>From Bf,</b><br>prins</p>
+  </div>
+
+<script>
+  // Play button functionality
+  document.getElementById('playButton').onclick = function() {
+    // Play the music
+    document.getElementById('bgMusic').play();
+    
+    // Show the email message
+    document.getElementById('emailMessage').style.display = 'block';
+    
+    // Hide the button after playing music and showing the message
+    document.getElementById('playButton').style.display = 'none'; 
+  };
+
+  const tulipCount = 40;
+
+  for (let i = 0; i < tulipCount; i++) {
+    const tulip = document.createElement('div');
+    tulip.classList.add('tulip');
+    tulip.style.left = `${Math.random() * 100}vw`;  // Randomize horizontal position
+    tulip.style.animationDuration = `${8 + Math.random() * 5}s`;  // Randomize speed
+    tulip.style.animationDelay = `${Math.random() * 5}s`;  // Randomize delay
+
+    const leftPetal = document.createElement('div');
+    leftPetal.classList.add('petal', 'left');
+
+    const rightPetal = document.createElement('div');
+    rightPetal.classList.add('petal', 'right');
+
+    const centerPetal = document.createElement('div');
+    centerPetal.classList.add('petal');
+
+    const stem = document.createElement('div');
+    stem.classList.add('stem');
+
+    tulip.appendChild(leftPetal);
+    tulip.appendChild(rightPetal);
+    tulip.appendChild(centerPetal);
+    tulip.appendChild(stem);
+    document.body.appendChild(tulip);
+  }
+</script>
+
+</body>
+</html>
